@@ -12,6 +12,7 @@ and open the template in the editor.
     <body>
         <?php
         echo "Hola Mundo";
+        echo "Este es un cambio de Jpineda para su primer commit";
         ?>
     </body>
 </html>
