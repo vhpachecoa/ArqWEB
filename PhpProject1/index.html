@@ -1,16 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE  html>
+<!--ng-app hace referencia al nombre de nuestro modulo-->
+<html lang="es" ng-app="app">
 <head>
-  <meta charset="utf-8">
-  <title>Hola mundo en AngularJs</title>
-  <link rel="stylesheet" href="css/estilo-basico.css">
-</head>
-<body ng-app>
-  <h1>Hola {{quien}}</h1>
-Prueba git
-  <input type="text" ng-model="quien">
-  <a class="accion" ng-click="quien = 'Jonathan'">Saluda a: {{quien}}</a>
-<script src="js/angular.min.js"></script>
+	<meta charset="utf-8">
+	<title>jQuery UI Example Page</title>
+	<link href="jquery-ui.css" rel="stylesheet">
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet"  href="css/normalize.css"  media="screen" />
+  <link rel="stylesheet"  href="css/foundation.min.css" media="screen" />
+	<style>
+	body{
+		font-family: "Trebuchet MS", sans-serif;
+		margin: 50px;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#dialog-link {
+		padding: .4em 1em .4em 20px;
+		text-decoration: none;
+		position: relative;
+	}
+	#dialog-link span.ui-icon {
+		margin: 0 5px 0 0;
+		position: absolute;
+		left: .2em;
+		top: 50%;
+		margin-top: -8px;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	select {
+		width: 200px;
+	}
 
+
+  label {
+    display: inline-block;
+    width: 5em;
+  }
+
+	</style>
+
+</head>
+<body>
+	<div id="tabs">
+	  <ul>
+	    <li><a href="#tabs-1">Inicio</a></li>
+	    <li><a href="#tabs-2">Formulario de Registro</a></li>
+	    <li><a href="#tabs-3">Busqueda de Libros</a></li>
+	  </ul>
+	  <div id="tabs-1">
+	    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+	  </div>
+	  <div id="tabs-2">
+	    <p><h1>Formulario de Registro de Usuario</h1>
+
+			<table class="table table-hover">
+				<tr>
+			<td>Nombre</td>
+			<td><input type='text' title="Acá debe ingresar el nombre completo"></td>
+				</tr>
+				<tr>
+				<td>Dirección</td>
+				<td><input type='text' id='fecha1'></td>
+				</tr>
+				<tr>
+				<td>Email</td>
+				<td><input type='text' id='fecha1'></td>
+				</tr>
+				<td>Sexo</td>
+				<td><fieldset>
+
+			    <label for="radio-1">M</label>
+			    <input class ='radiot' type="radio" name="radio-1" id="radio-1">
+			    <label for="radio-2">F</label>
+			    <input class ='radiot' type="radio" name="radio-1" id="radio-2">
+			  </fieldset></td>
+				</tr>
+				<tr>
+				<td>Fecha</td>
+				<td><input type='text' id='fechajquery'></td>
+				</tr>
+				<tr>
+				<td colspan='2'><button type="button" class="btn btn-success">Guardar</button></td>
+				</tr>
+			</table></p>
+	  </div>
+	  <div id="tabs-3">
+			<!--añadimos aquí el controlador libreriaController ya que será donde mostremos los datos-->
+			<div class="row" ng-controller="libreriaController">
+
+					<h1 class="subheader">Filtrar datos con AngularJS</h1>
+					<div class="row">
+					<div class="large-12 columns">
+						 <label>Filtra tu búsqueda: </label>
+						 <input type="text" ng-model="buscador" />
+					</div>
+					<div class="large-12 columns">
+						<label>Establece un orden: </label>
+						<select ng-model="tipoOrden">
+							<option value="">Escoge un orden</option>
+							<option value="titulo">Ascendente</option>
+							<option value="-titulo">Descendente</option>
+					 </select>
+				</div>
+				</div>
+							<div style="margin-bottom: 25px" class="row panel radius" ng-repeat="articulo in articulos|filter:buscador|orderBy:tipoOrden">
+
+								<div class="large-3 columns">
+									<img ng-src="imgs/{{articulo.img}}"/>
+								</div>
+
+								<div class="large-8 columns">
+									<h4 class="subheader">{{ articulo.titulo }}</h4><br />
+									{{ articulo.sinopsis }}
+								</div>
+							</div>
+			</div>
+	  </div>
+	</div>
+
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controller.js"></script>
+<script src="external/jquery/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="jquery-ui.js"></script>
+
+<script>
+$( "#tabs" ).tabs();
+$( ".radiot" ).checkboxradio();
+$( "#fechajquery" ).datepicker({
+	inline: true
+});
+
+
+
+// Hover states on the static widgets
+$( "#dialog-link, #icons li" ).hover(
+	function() {
+		$( this ).addClass( "ui-state-hover" );
+	},
+	function() {
+		$( this ).removeClass( "ui-state-hover" );
+	}
+);
+</script>
 </body>
 </html>
